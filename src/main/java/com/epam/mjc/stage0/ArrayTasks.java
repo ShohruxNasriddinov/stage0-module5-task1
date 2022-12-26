@@ -1,5 +1,7 @@
 package com.epam.mjc.stage0;
 
+import java.util.ArrayList;
+
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -27,7 +29,7 @@ public class ArrayTasks {
      */
     public int[] generateNumbers(int length) {
         int[] num = new int[length];
-        for (int i = 1; i <= length; i++) {
+        for (int i = 1; i < length; i++) {
             num[i]=i;
         }
         return num;
@@ -61,7 +63,7 @@ public class ArrayTasks {
     public int findIndexOfNumber(int[] arr, int number) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i]==number)
-                return i+1;
+                return i;
         }
         return -1;
     }
@@ -74,11 +76,18 @@ public class ArrayTasks {
      * <p>
      * arr = ["Bob", "Nick"]               -> ["Nick", "Bob"]
      * arr = ["pineapple", "apple", "pen"] -> ["pen", "apple", "pineapple"]
+     * arr= ["a","b","c","d","e","f"] -> ["f","e","d","c","b","a"]
      */
     public String[] reverseArray(String[] arr) {
-        String temp=arr[0];
-        arr[0] = arr[arr.length-1];
-        arr[arr.length-1]=temp;
+        int i=0;
+        int j = arr.length-1;
+        while (arr.length/2>i) {
+            String temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
         return arr;
     }
 
@@ -94,15 +103,17 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        int[] newArr=new int[arr.length];
-        int count=0;
+        ArrayList<Integer> newArr=new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             if (arr[i]>0){
-                newArr[count]=arr[i];
-                count++;
+                newArr.add(arr[i]);
             }
         }
-        return newArr;
+        int[] arr1=new int[newArr.size()];
+        for (int i = 0; i < newArr.size(); i++) {
+            arr1[i]=newArr.get(i);
+        }
+        return arr1;
     }
 
     /**
@@ -117,11 +128,13 @@ public class ArrayTasks {
      */
     public int[][] sortRaggedArray(int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length-1; j++) {
-                if (arr[i][j]>arr[i][j+1]){
-                    int temp=arr[i][j];
-                    arr[i][j]=arr[i][j+1];
-                    arr[i][j+1]=temp;
+            for (int j = 0; j < arr[i].length; j++) {
+                for (int k = j+1; k < arr[i].length; k++) {
+                    if (arr[i][j]>arr[i][k]){
+                        int temp=arr[i][j];
+                        arr[i][j]=arr[i][k];
+                        arr[i][k]=temp;
+                    }
                 }
             }
         }

@@ -27,7 +27,7 @@ public class AlgorithmComplexity {
      * Return the complexity of accessing an array element by index.
      */
     public Complexity arrayIndexItemAccess() {
-        return Complexity.O_N;
+        return Complexity.O_1;
     }
 
     /**
