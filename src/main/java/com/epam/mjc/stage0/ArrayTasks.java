@@ -1,6 +1,5 @@
 package com.epam.mjc.stage0;
 
-import java.util.ArrayList;
 
 /**
  * Here are the tasks for working with the arrays.
@@ -103,17 +102,18 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        ArrayList<Integer> newArr=new ArrayList<>();
+        int count=0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i]>0)
+                count++;
+        }
+        int[] newArr=new int[count];
         for (int i = 0; i < arr.length; i++) {
             if (arr[i]>0){
-                newArr.add(arr[i]);
+                newArr[i]=arr[i];
             }
         }
-        int[] arr1=new int[newArr.size()];
-        for (int i = 0; i < newArr.size(); i++) {
-            arr1[i]=newArr.get(i);
-        }
-        return arr1;
+        return newArr;
     }
 
     /**
